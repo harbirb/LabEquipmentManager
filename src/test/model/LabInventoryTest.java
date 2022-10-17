@@ -25,14 +25,23 @@ class LabInventoryTest {
 
     @Test
     void testAddEquipment() {
-        inventory.addEquipment(e1);
+        assertTrue(inventory.addEquipment(e1));
         assertEquals(1, inventory.getLabInventory().size());
         assertEquals(e1, inventory.getLabInventory().get(0));
     }
     @Test
     void testAddEquipmentMultipleTimes() {
-        inventory.addEquipment(e1);
-        inventory.addEquipment(e2);
+        assertTrue(inventory.addEquipment(e1));
+        assertTrue(inventory.addEquipment(e2));
+        assertEquals(2, inventory.getLabInventory().size());
+        assertEquals(e1, inventory.getLabInventory().get(0));
+        assertEquals(e2, inventory.getLabInventory().get(1));
+    }
+    @Test
+    void testAddEquipmentDuplicates() {
+        assertTrue(inventory.addEquipment(e1));
+        assertTrue(inventory.addEquipment(e2));
+        assertFalse(inventory.addEquipment(e2));
         assertEquals(2, inventory.getLabInventory().size());
         assertEquals(e1, inventory.getLabInventory().get(0));
         assertEquals(e2, inventory.getLabInventory().get(1));
@@ -99,6 +108,8 @@ class LabInventoryTest {
         inventory.addEquipment(e1);
         inventory.addEquipment(e2);
         assertEquals(e2, inventory.getMostExpensiveEquipment());
+        e1.addCost(1000);
+        assertEquals(e1, inventory.getMostExpensiveEquipment());
     }
 
     @Test

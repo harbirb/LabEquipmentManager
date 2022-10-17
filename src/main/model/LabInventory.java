@@ -19,8 +19,13 @@ public class LabInventory {
     //REQUIRES: equipment is not null
     //MODIFIES: this
     //EFFECTS: adds the equipment to the lab inventory, if it is not already in the inventory
-    public void addEquipment(Equipment equipment) {
-        labInventory.add(equipment);
+    public boolean addEquipment(Equipment equipment) {
+        if (labInventory.contains(equipment)) {
+            return false;
+        } else {
+            labInventory.add(equipment);
+            return true;
+        }
     }
 
     //REQUIRES: equipment already exists within the lab inventory

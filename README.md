@@ -29,6 +29,5 @@ was broken or replaced.
 names** of the scientists who have used it.
 - As a user, I want to be able to select equipment and **update the 
 running cost** spent on parts and repairs.
-- As a user, I want to be able to **view statistics** for each 
-instrument such as the most frequent users, number of users between 
-servicing, and cost per user.
+- As a user, I want to be able to **view statistics** for the list
+of equipment such as the most frequently used, and most expensive item.

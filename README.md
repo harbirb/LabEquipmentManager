@@ -31,3 +31,5 @@ names** of the scientists who have used it.
 running cost** spent on parts and repairs.
 - As a user, I want to be able to **view statistics** for the list
 of equipment such as the most frequently used, and most expensive item.
+- As a user, I want to be able to save my equipment list to file.
+- As a user, I want to be given the option to load my equipment list from file.

@@ -2,21 +2,33 @@ package ui;
 
 import model.Equipment;
 import model.LabInventory;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class EquipmentManagerApp {
+    private static final String JSON_STORE = "./data/labInventory.json";
     private LabInventory inventory;
     private Scanner input;
     private boolean selected;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
-    public EquipmentManagerApp() {
+    public EquipmentManagerApp() throws FileNotFoundException {
+        inventory = new LabInventory();
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runManager();
+
     }
 
     // MODIFIES: this
-    // EFFECTS: procceses user input at the main menu, until user quits, or goes to equipment selection page
+    // EFFECTS: processes user input at the main menu, until user quits, or goes to equipment selection page
     public void runManager() {
         boolean running = true;
         selected = false;
@@ -44,10 +56,14 @@ public class EquipmentManagerApp {
             printEquipmentStatus();
         } else if (command.equals("v")) {
             doViewInventory();
-        } else if (command.equals("s")) {
+        } else if (command.equals("p")) {
             doShowStatistics();
         } else if (command.equals("a")) {
             addEquipment();
+        } else if (command.equals("s")) {
+            saveInventory();
+        } else if (command.equals("l")) {
+            loadInventory();
         }
     }
 
@@ -57,7 +73,9 @@ public class EquipmentManagerApp {
         System.out.println("\na -> add new equipment to the inventory");
         System.out.println("\nc -> current status of all equipment");
         System.out.println("\nv -> view and select equipment from the inventory");
-        System.out.println("\ns -> view statistics of inventory");
+        System.out.println("\np -> view statistics of inventory");
+        System.out.println("\nl -> load lab inventory from file");
+        System.out.println("\ns -> save current lab inventory to file");
         System.out.println("\nq -> quit");
     }
 
@@ -71,7 +89,7 @@ public class EquipmentManagerApp {
         Equipment massSpec;
         centrifuge = new Equipment("Centrifuge", "online", 3000);
         massSpec = new Equipment("Mass Spectrometer", "offline", 20000);
-        inventory = new LabInventory();
+
         inventory.addEquipment(centrifuge);
         inventory.addEquipment(massSpec);
         centrifuge.addUser("James");
@@ -123,6 +141,27 @@ public class EquipmentManagerApp {
             System.out.println("Equipment not found in inventory. Returning to main menu");
         }
     }
+
+    private void loadInventory() {
+        try {
+            inventory = jsonReader.read();
+            System.out.println("Loaded the saved lab inventory from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void saveInventory() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(inventory);
+            jsonWriter.close();
+            System.out.println("Saved the lab inventory to :" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save to file: " + JSON_STORE);
+        }
+    }
+
 
     // EFFECTS: displays a list of possible actions for the equipment selected
     private void showEquipmentOptions() {

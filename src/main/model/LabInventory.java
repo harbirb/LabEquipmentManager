@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class LabInventory {
+public class LabInventory implements Writable {
     private List<Equipment> labInventory;
 
     //EFFECTS: constructs an empty list of equipment in the lab inventory
@@ -86,4 +90,19 @@ public class LabInventory {
         return mostUsedEquipment;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("labInventory", labInventoryToJson());
+        return json;
+    }
+
+    private JSONArray labInventoryToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Equipment e: labInventory) {
+            jsonArray.put(e.toJson());
+        }
+        return jsonArray;
+    }
 }

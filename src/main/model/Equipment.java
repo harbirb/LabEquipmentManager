@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipment {
+public class Equipment implements Writable {
 
     private String name;            // name of the equipment
     private String status;          // current status of the equipment
@@ -56,5 +59,16 @@ public class Equipment {
 
     public int getRunningCost() {
         return runningCost;
+    }
+
+    //TODO: add comments
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("status", status);
+        json.put("userHistory", userHistory);
+        json.put("runningCost", runningCost);
+        return json;
     }
 }

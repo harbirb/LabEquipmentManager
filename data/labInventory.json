@@ -1,0 +1,23 @@
+{"labInventory": [
+    {
+        "name": "Centrifuge",
+        "userHistory": [
+            "James",
+            "Lilly"
+        ],
+        "runningCost": 3000,
+        "status": "online"
+    },
+    {
+        "name": "Mass Spectrometer",
+        "userHistory": ["Kyle"],
+        "runningCost": 20000,
+        "status": "offline"
+    },
+    {
+        "name": "test tube",
+        "userHistory": ["Harbir Bajwa"],
+        "runningCost": 5,
+        "status": "available"
+    }
+]}

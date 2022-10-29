@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Represents the JSON writer test class
 class JsonWriterTest extends JsonTest {
 
     @Test

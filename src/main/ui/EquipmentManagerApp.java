@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+// Represents the Equipment Manager application
 public class EquipmentManagerApp {
     private static final String JSON_STORE = "./data/labInventory.json";
     private LabInventory inventory;
@@ -19,12 +20,12 @@ public class EquipmentManagerApp {
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
 
+    //EFFECTS: constructs the lab inventory and runs the application
     public EquipmentManagerApp() throws FileNotFoundException {
         inventory = new LabInventory();
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         runManager();
-
     }
 
     // MODIFIES: this
@@ -79,22 +80,11 @@ public class EquipmentManagerApp {
         System.out.println("\nq -> quit");
     }
 
-    //MODIFIES: this
-    //EFFECTS : initializes input, inventory items, and adds users to equipment
+    //EFFECTS : initializes input
     // delimiter \n ensures that spaces between inputs are recognized
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-        Equipment centrifuge;
-        Equipment massSpec;
-        centrifuge = new Equipment("Centrifuge", "online", 3000);
-        massSpec = new Equipment("Mass Spectrometer", "offline", 20000);
-
-        inventory.addEquipment(centrifuge);
-        inventory.addEquipment(massSpec);
-        centrifuge.addUser("James");
-        centrifuge.addUser("Lilly");
-        massSpec.addUser("Kyle");
     }
 
 
@@ -142,6 +132,8 @@ public class EquipmentManagerApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: loads lab inventory from file
     private void loadInventory() {
         try {
             inventory = jsonReader.read();
@@ -151,6 +143,7 @@ public class EquipmentManagerApp {
         }
     }
 
+    //EFFECTS: saves the current lab inventory to file
     private void saveInventory() {
         try {
             jsonWriter.open();

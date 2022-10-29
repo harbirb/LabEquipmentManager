@@ -7,6 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents a Lab Inventory with a collection of equipment
 public class LabInventory implements Writable {
     private List<Equipment> labInventory;
 
@@ -90,6 +91,7 @@ public class LabInventory implements Writable {
         return mostUsedEquipment;
     }
 
+    //EFFECTS: returns the lab inventory as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -97,6 +99,7 @@ public class LabInventory implements Writable {
         return json;
     }
 
+    //EFFECTS: returns the equipment in the lab inventory as a JSON array
     private JSONArray labInventoryToJson() {
         JSONArray jsonArray = new JSONArray();
 

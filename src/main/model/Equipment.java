@@ -6,6 +6,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents laboratory equipment with a name, status, user history, and a running cost.
 public class Equipment implements Writable {
 
     private String name;            // name of the equipment
@@ -61,7 +62,7 @@ public class Equipment implements Writable {
         return runningCost;
     }
 
-    //TODO: add comments
+    //EFFECTS: returns the equipment as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

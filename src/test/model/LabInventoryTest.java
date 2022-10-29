@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Represents the LabInventory test class
 class LabInventoryTest {
     private LabInventory inventory;
     Equipment e1 = new Equipment("Centrifuge", "online", 1200);

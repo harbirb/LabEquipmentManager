@@ -1,23 +1,23 @@
 {"labInventory": [
-    {
-        "name": "Centrifuge",
-        "userHistory": [
-            "James",
-            "Lilly"
-        ],
-        "runningCost": 3000,
-        "status": "online"
-    },
-    {
-        "name": "Mass Spectrometer",
-        "userHistory": ["Kyle"],
-        "runningCost": 20000,
-        "status": "offline"
-    },
-    {
-        "name": "laptop",
-        "userHistory": [],
-        "runningCost": 1000,
-        "status": "online"
-    }
+  {
+    "name": "Centrifuge",
+    "userHistory": [
+      "James",
+      "Lilly"
+    ],
+    "runningCost": 3000,
+    "status": "online"
+  },
+  {
+    "name": "Mass Spectrometer",
+    "userHistory": ["Kyle"],
+    "runningCost": 20000,
+    "status": "offline"
+  },
+  {
+    "name": "laptop",
+    "userHistory": [],
+    "runningCost": 1000,
+    "status": "online"
+  }
 ]}

@@ -9,9 +9,10 @@ public class SaveFileTool {
 
     private EquipmentManagerGUI manager;
 
-    private SaveFileTool(EquipmentManagerGUI manager) {
+    public SaveFileTool(JComponent parent, EquipmentManagerGUI manager) {
         this.manager = manager;
         button = new JButton("Save to file");
+        parent.add(button);
         button.addActionListener(new SaveFileHandler());
     }
 
@@ -20,6 +21,7 @@ public class SaveFileTool {
         @Override
         public void actionPerformed(ActionEvent e) {
             manager.saveInventory();
+            manager.displayMainMenu();
         }
     }
 }

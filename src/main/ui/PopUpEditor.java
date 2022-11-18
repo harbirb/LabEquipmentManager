@@ -20,7 +20,7 @@ public class PopUpEditor extends JFrame {
     private JButton removeButton;
     private Equipment equip;
 
-    public PopUpEditor(Equipment equip, EquipmentManagerGUI manager, DefaultListModel listModel, int index) {
+    public PopUpEditor(Equipment equip, EquipmentManagerGUI manager) {
         LabInventory inventory = manager.getInventory();
         newExpense = new JTextField(20);
         expenseButton = new JButton("Add Expense");

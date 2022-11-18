@@ -6,13 +6,15 @@ import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class EquipmentManagerGUI extends JFrame {
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 700;
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 520;
     private JsonWriter jsonWriter;
     private LabInventory inventory;
     private JsonReader jsonReader;
@@ -41,7 +43,6 @@ public class EquipmentManagerGUI extends JFrame {
         LoadFileTool lft = new LoadFileTool(fileOptions, this);
         CreateInventoryTool cit = new CreateInventoryTool(fileOptions, this);
         setVisible(true);
-
     }
 
     //MODIFIES: this
@@ -73,13 +74,26 @@ public class EquipmentManagerGUI extends JFrame {
         this.repaint();
         EquipmentList el = new EquipmentList(this);
         el.createAndShowGUI(this);
+        displayMenuOptions();
     }
 
     private void displayMenuOptions() {
         JPanel menuOptions = new JPanel();
+        JButton addEquipment = new JButton("Add New Equipment");
+        EquipmentManagerGUI manager = this;
+        addEquipment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PopUpAdder(manager);
+            }
+        });
+        SaveFileTool saveFileTool = new SaveFileTool(menuOptions, this);
 
-
-
+        menuOptions.setLayout(new GridLayout(2, 0, 10, 10));
+        menuOptions.add(addEquipment);
+        this.add(menuOptions, BorderLayout.EAST);
+        this.repaint();
+        this.setVisible(true);
     }
 
     public static void main(String[] args) {

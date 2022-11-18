@@ -11,7 +11,7 @@ public class WelcomeScreen extends JPanel {
     private Image backgroundImage;
 
     public WelcomeScreen() throws IOException {
-        backgroundImage = ImageIO.read(new File("./data/tobs.jpg"));
+        backgroundImage = ImageIO.read(new File("./data/Lab Equipment Manager.png"));
     }
 
     public void paintComponent(Graphics g) {

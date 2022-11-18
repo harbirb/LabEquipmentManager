@@ -38,7 +38,7 @@ public class EquipmentList extends JPanel implements ListSelectionListener {
                 int index = inventoryList.getSelectedIndex();
                 String name = listModel.getElementAt(index).toString();
                 Equipment equipmentToEdit = inventory.searchEquipmentByName(name);
-                PopUpEditor editor = new PopUpEditor(equipmentToEdit, manager, listModel, index);
+                PopUpEditor editor = new PopUpEditor(equipmentToEdit, manager);
             }
         });
         add(listScrollPane, BorderLayout.CENTER);
@@ -49,7 +49,7 @@ public class EquipmentList extends JPanel implements ListSelectionListener {
     public void createAndShowGUI(JFrame frame) {
         //Create and set up the content pane.
         this.setOpaque(true);
-        frame.setContentPane(this);
+        frame.add(this);
 
         //Display the window.
         frame.pack();

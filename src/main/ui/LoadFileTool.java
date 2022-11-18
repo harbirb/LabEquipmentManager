@@ -12,10 +12,10 @@ public class LoadFileTool {
         button = new JButton("Load Inventory from file?");
         this.manager = manager;
         parent.add(button);
-        button.addActionListener(new LoadFileClickHandler());
+        button.addActionListener(new SaveFileClickHandler());
     }
 
-    private class LoadFileClickHandler implements ActionListener {
+    private class SaveFileClickHandler implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {

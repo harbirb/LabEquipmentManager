@@ -15,9 +15,9 @@
         "status": "offline"
     },
     {
-        "name": "test tube",
-        "userHistory": ["Harbir Bajwa"],
-        "runningCost": 5,
-        "status": "available"
+        "name": "laptop",
+        "userHistory": [],
+        "runningCost": 1000,
+        "status": "online"
     }
 ]}

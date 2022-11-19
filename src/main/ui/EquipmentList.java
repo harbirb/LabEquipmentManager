@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.*;
 
+//Represents the panel which displays the Equipment currently in the Inventory
 public class EquipmentList extends JPanel implements ListSelectionListener {
 
     private JList inventoryList;
@@ -16,6 +17,7 @@ public class EquipmentList extends JPanel implements ListSelectionListener {
 
     private static final String editString = "Edit";
 
+    //EFFECTS: creates a new inventory and adds it into a scroll pane, and makes an edit button
     public EquipmentList(EquipmentManagerGUI manager) {
         super(new BorderLayout());
         LabInventory inventory = manager.getInventory();
@@ -26,7 +28,6 @@ public class EquipmentList extends JPanel implements ListSelectionListener {
 
         inventoryList = new JList(listModel);
         inventoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //inventoryList.setSelectedIndex(0);
         inventoryList.addListSelectionListener(this);
         inventoryList.setVisibleRowCount(10);
         JScrollPane listScrollPane = new JScrollPane(inventoryList);
@@ -46,28 +47,19 @@ public class EquipmentList extends JPanel implements ListSelectionListener {
     }
     
 
+    //EFFECTS: adds the panel to the JFrame, and displays the scroll pane
     public void createAndShowGUI(JFrame frame) {
-        //Create and set up the content pane.
+
         this.setOpaque(true);
         frame.add(this);
 
-        //Display the window.
         frame.pack();
         frame.setVisible(true);
     }
 
-//    public void main(String[] args) {
-//        //Schedule a job for the event-dispatching thread:
-//        //creating and showing this application's GUI.
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
-//    }
-
+    //EFFECTS: required by implementation of ListSelectionListener
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        
+
     }
 }

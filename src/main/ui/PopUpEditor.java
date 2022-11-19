@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Represents a pop-up window to edit parameters of a selected equipment
 public class PopUpEditor extends JFrame {
     private JFrame frame;
     private JTextField newExpense;
@@ -20,35 +21,46 @@ public class PopUpEditor extends JFrame {
     private JButton removeButton;
     private Equipment equip;
 
+    //EFFECTS: constructs a PopUpEditor, initializes fields and the RemoveButton
     public PopUpEditor(Equipment equip, EquipmentManagerGUI manager) {
         LabInventory inventory = manager.getInventory();
         newExpense = new JTextField(20);
         expenseButton = new JButton("Add Expense");
-        AddExpenseListener addExpenseListener = new AddExpenseListener();
-        newExpense.addActionListener(addExpenseListener);
-        expenseButton.addActionListener(addExpenseListener);
         newStatus = new JTextField(20);
         statusButton = new JButton("Update Status");
-        UpdateStatusListener updateStatusListener = new UpdateStatusListener();
-        newStatus.addActionListener(updateStatusListener);
-        statusButton.addActionListener(updateStatusListener);
         newUser = new JTextField(20);
         userButton = new JButton("Add User");
-        AddUserListener addUserListener = new AddUserListener();
-        newUser.addActionListener(addUserListener);
-        userButton.addActionListener(addUserListener);
         this.equip = equip;
         removeButton = new JButton("REMOVE EQUIPMENT");
         createPopUp();
         removeButton.addActionListener(new ActionListener() {
+            //EFFECTS: removes selected equipment from the inventory and closes window
             @Override
             public void actionPerformed(ActionEvent e) {
                 inventory.removeEquipment(equip);
+                manager.displayMainMenu();
+                dispose();
                 manager.displayMainMenu();
             }
         });
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the relevant actionListener to each button
+    private void assignListeners() {
+        AddExpenseListener addExpenseListener = new AddExpenseListener();
+        newExpense.addActionListener(addExpenseListener);
+        expenseButton.addActionListener(addExpenseListener);
+        UpdateStatusListener updateStatusListener = new UpdateStatusListener();
+        newStatus.addActionListener(updateStatusListener);
+        statusButton.addActionListener(updateStatusListener);
+        AddUserListener addUserListener = new AddUserListener();
+        newUser.addActionListener(addUserListener);
+        userButton.addActionListener(addUserListener);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: initializes the pop-up's JFrame, assigns relevant JComponents, and displays the frame
     private void createPopUp() {
         frame = new JFrame(equip.getName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +81,12 @@ public class PopUpEditor extends JFrame {
         setVisible(true);
     }
 
+    //Represents the actionListener for the newExpenseButton
     private class AddExpenseListener implements ActionListener {
+
+        //REQUIRES: newExpense.getText() is not empty, and contains a String that can be parsed into an Integer
+        //MODIFIES: this
+        //EFFECTS: adds the expense to the selected equipment
         @Override
         public void actionPerformed(ActionEvent e) {
             int expense = Integer.parseInt(newExpense.getText());
@@ -79,7 +96,12 @@ public class PopUpEditor extends JFrame {
         }
     }
 
+    //Represents the actionListener for the newStatusButton
     private class UpdateStatusListener implements ActionListener {
+
+        //REQUIRES: newStatus.getText() is not empty, and contains a String
+        //MODIFIES: this
+        //EFFECTS: updates the status of the selected equipment
         @Override
         public void actionPerformed(ActionEvent e) {
             String status = newStatus.getText();
@@ -89,7 +111,12 @@ public class PopUpEditor extends JFrame {
         }
     }
 
+    //Represents the actionListener for the newUserButton
     private class AddUserListener implements ActionListener {
+
+        //REQUIRES: newUser.getText() is not empty, and contains a String
+        //MODIFIES: this
+        //EFFECTS: adds the user to the selected equipment's user history
         @Override
         public void actionPerformed(ActionEvent e) {
             String user = newUser.getText();

@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Represents a pop-up window to fill in parameters of a new equipment
 public class PopUpAdder extends JFrame {
     private JFrame frame;
     private JTextField upfrontCost;
@@ -17,7 +18,7 @@ public class PopUpAdder extends JFrame {
     private EquipmentManagerGUI manager;
     private LabInventory inventory;
 
-
+    //EFFECTS: constructs a PopUpAdder, initializes fields, and assigns relevant actionListeners
     public PopUpAdder(EquipmentManagerGUI manager) {
         inventory = manager.getInventory();
         this.manager = manager;
@@ -33,6 +34,8 @@ public class PopUpAdder extends JFrame {
         createPopUp();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the pop-up's JFrame, assigns relevant JComponents, and displays the frame
     private void createPopUp() {
         frame = new JFrame("New Equipment Entry");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +53,13 @@ public class PopUpAdder extends JFrame {
         setVisible(true);
     }
 
+    //Represents the actionListener for the addEquipmentButton
     private class AddEquipmentListener  implements ActionListener {
+
+        //REQUIRES: no JTextFields are empty, a String is entered in name and status,
+        // an integer is entered in upfrontCost.
+        //MODIFIES: this
+        //EFFECTS: creates a new Equipment, adds it to the inventory, and closes the main menu
         @Override
         public void actionPerformed(ActionEvent e) {
             String equipName = name.getText();

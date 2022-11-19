@@ -33,3 +33,18 @@ running cost** spent on parts and repairs.
 of equipment such as the most frequently used, and most expensive item.
 - As a user, I want to be able to save my equipment list to file.
 - As a user, I want to be given the option to load my equipment list from file.
+
+# Instructions for Grader
+
+- You can locate my visual component by launching the GUI, right-click the EquipmentManagerGUI class and run main().
+That should display the welcome screen containing an image which is my visual component.
+- You can reload the state of my application by launching the application and clicking the "load from file" button.
+- You can generate the first required event related to adding Xs to a Y by clicking load from file. This should display
+the main menu containing a panel of current inventory items. Click and select an inventory item and click on the Edit button
+on the bottom. You may enter a String into the newStatus or newUser text fields, and an integer into the newExpense text field.
+Submit your entered value by clicking the button beside it. Alternatively, click the remove Equipment to remove it from the list.
+- You can generate the second required event related to adding Xs to a Y by entering the main menu and clicking the Add New Equipment
+Button. This will open up a pop-up window to enter parameters of the new equipment. Enter a String into the newStatus and 
+newUser text fields, and an integer into the upfrontCost text field. Click Add New Equipment to submit the new equipment fields
+and add it to the inventory.
+- You can save the state of my application by entering the main-menu and clicking the "save to file" button.

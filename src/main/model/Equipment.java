@@ -30,20 +30,26 @@ public class Equipment implements Writable {
     //EFFECTS: updates the operational status of the equipment to the given newStatus
     public void setStatus(String newStatus) {
         this.status = newStatus;
+        EventLog.getInstance().logEvent(new Event("Status of " + name + " set to: " + newStatus));
     }
+
     //REQUIRES: user has a non-zero length
     //MODIFIES: this
     //EFFECTS: adds a user to the list of past users, duplicate entries allowed
-
     public void addUser(String user) {
         userHistory.add(user);
+        EventLog.getInstance().logEvent(new Event(user
+                + " has been added to the user history of the" + name));
     }
+
     //REQUIRES: cost > 0
     //MODIFIES: this
     //EFFECTS: adds the expense amount in CAD, to the running cost of the equipment
 
     public void addCost(int expense) {
         runningCost += expense;
+        EventLog.getInstance().logEvent(new Event("Expense of $"
+                + expense + " has been added for the " + name));
     }
 
     public String getName() {

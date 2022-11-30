@@ -29,6 +29,8 @@ public class LabInventory implements Writable {
             return false;
         } else {
             labInventory.add(equipment);
+            EventLog.getInstance().logEvent(new Event(equipment.getName()
+                    + " has been added to the lab inventory!"));
             return true;
         }
     }
@@ -39,6 +41,8 @@ public class LabInventory implements Writable {
 
     public void removeEquipment(Equipment equipment) {
         labInventory.remove(equipment);
+        EventLog.getInstance().logEvent(new Event(equipment.getName()
+                + " has been removed from the lab inventory"));
     }
 
 

@@ -33,6 +33,7 @@ public class PopUpEditor extends JFrame {
         this.equip = equip;
         removeButton = new JButton("REMOVE EQUIPMENT");
         createPopUp();
+        assignListeners();
         removeButton.addActionListener(new ActionListener() {
             //EFFECTS: removes selected equipment from the inventory and closes window
             @Override

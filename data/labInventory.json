@@ -17,13 +17,7 @@
     {
         "name": "laptop",
         "userHistory": [],
-        "runningCost": 1000,
-        "status": "online"
-    },
-    {
-        "name": "test tube",
-        "userHistory": [],
-        "runningCost": 1000,
+        "runningCost": 500,
         "status": "online"
     }
 ]}

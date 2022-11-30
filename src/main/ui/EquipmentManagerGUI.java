@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.LabInventory;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -38,8 +41,7 @@ public class EquipmentManagerGUI extends JFrame {
         this.setContentPane(w);
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         JPanel fileOptions = new JPanel();
         fileOptions.setLayout(new GridLayout(1,0));
         fileOptions.setSize(new Dimension(0, 0));
@@ -47,6 +49,21 @@ public class EquipmentManagerGUI extends JFrame {
         new LoadFileTool(fileOptions, this);
         new CreateInventoryTool(fileOptions, this);
         setVisible(true);
+        printEventLog();
+    }
+
+    private void printEventLog() {
+        EventLog log = EventLog.getInstance();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (model.Event event : log) {
+                    System.out.println(event);
+                }
+                System.exit(0);
+            }
+        });
+
     }
 
     //MODIFIES: this

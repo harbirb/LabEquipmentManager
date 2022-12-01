@@ -48,3 +48,13 @@ Button. This will open up a pop-up window to enter parameters of the new equipme
 newUser text fields, and an integer into the upfrontCost text field. Click Add New Equipment to submit the new equipment fields
 and add it to the inventory.
 - You can save the state of my application by entering the main-menu and clicking the "save to file" button.
+
+# Phase 4: Task 2
+- Thu Dec 01 15:30:39 PST 2022
+- Mass Spectrometer has been added to the lab inventory!
+- Thu Dec 01 15:30:56 PST 2022
+- Status of Mass Spectrometer set to: Out Of Order
+- Thu Dec 01 15:30:57 PST 2022
+- Harbir has been added to the user history of theMass Spectrometer
+
+- Process finished with exit code 0

@@ -39,7 +39,7 @@ public class Equipment implements Writable {
     public void addUser(String user) {
         userHistory.add(user);
         EventLog.getInstance().logEvent(new Event(user
-                + " has been added to the user history of the" + name));
+                + " has been added to the user history of the " + name));
     }
 
     //REQUIRES: cost > 0

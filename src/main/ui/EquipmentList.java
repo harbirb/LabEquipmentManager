@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 //Represents the panel which displays the Equipment currently in the Inventory
+//Reference: https://docs.oracle.com/javase/tutorial/uiswing/examples/zipfiles/components-ListDemoProject.zip
 public class EquipmentList extends JPanel implements ListSelectionListener {
 
     private JList inventoryList;

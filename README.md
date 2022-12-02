@@ -58,3 +58,11 @@ and add it to the inventory.
 - Harbir has been added to the user history of theMass Spectrometer
 
 - Process finished with exit code 0
+
+# Phase 4: Task 3
+- I would refactor some GUI features such as the buttons/pop-up windows
+- Most buttons did similar data and shared behaviour, so I could have made an abstract class for them.
+- I would make a somewhat generic abstract button class and implement unique ActionListeners for each.
+- I could have also reduced duplicate code by refactoring my pop-up windows.
+- I would make another abstract class to implement the pop-up window and text fields, but implement
+the contents of the labels in the subclasses.

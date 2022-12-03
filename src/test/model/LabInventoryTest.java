@@ -3,6 +3,10 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 //Represents the LabInventory test class
@@ -10,6 +14,7 @@ class LabInventoryTest {
     private LabInventory inventory;
     Equipment e1 = new Equipment("Centrifuge", "online", 1200);
     Equipment e2 = new Equipment("Fume Hood", "offline", 1400);
+    private EventLog eventLog;
 
     @BeforeEach
     void runBefore() {
@@ -17,6 +22,9 @@ class LabInventoryTest {
         e1.addUser("James");
         e1.addUser("Henry");
         e2.addUser("Lilly");
+        eventLog = EventLog.getInstance();
+        eventLog.clear();
+
 
     }
     @Test
@@ -124,5 +132,19 @@ class LabInventoryTest {
         inventory.addEquipment(e1);
         inventory.addEquipment(e2);
         assertEquals(e1, inventory.getMostUsedEquipment());
+    }
+
+    @Test
+    void testEventLog() {
+        inventory.addEquipment(e1);
+        inventory.addEquipment(e2);
+        inventory.removeEquipment(e2);
+        Iterator<Event> itr = eventLog.iterator();
+        assertTrue(itr.hasNext());
+        assertEquals("Event log cleared.", itr.next().getDescription());
+        assertEquals("Centrifuge has been added to the lab inventory!", itr.next().getDescription());
+        assertEquals("Fume Hood has been added to the lab inventory!", itr.next().getDescription());
+        assertEquals("Fume Hood has been removed from the lab inventory", itr.next().getDescription());
+        assertFalse(itr.hasNext());
     }
 }

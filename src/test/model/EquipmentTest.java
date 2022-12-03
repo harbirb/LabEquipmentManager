@@ -4,16 +4,22 @@ import model.Equipment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 //Represents the Equipment test class
 class EquipmentTest {
     private Equipment equipment;
+    private EventLog eventLog;
 
     @BeforeEach
     void runBefore() {
         equipment = new Equipment("Centrifuge", "online", 1000);
+        eventLog = EventLog.getInstance();
+        eventLog.clear();
     }
 
     @Test
@@ -78,6 +84,21 @@ class EquipmentTest {
         assertEquals(1800, equipment.getRunningCost());
         equipment.addCost(200);
         assertEquals(2000, equipment.getRunningCost());
+    }
+
+    @Test
+    void testEventLog() {
+        equipment.setStatus("offline");
+        equipment.addUser("Harbir");
+        equipment.addCost(1000);
+        Iterator<Event> itr = eventLog.iterator();
+        assertTrue(itr.hasNext());
+        assertEquals("Event log cleared.", itr.next().getDescription());
+        assertEquals("Status of Centrifuge set to: offline", itr.next().getDescription());
+        assertEquals("Harbir has been added to the user history of the Centrifuge", itr.next().getDescription());
+        assertEquals("Expense of $1000 has been added for the Centrifuge", itr.next().getDescription());
+        assertFalse(itr.hasNext());
+
     }
 }
 

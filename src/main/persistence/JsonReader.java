@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads the lab inventory from JSON data stored in a data file
-// Reference: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// Reference: https://github.students.cs.ubc.ca/CPSC/JsonSerializationDemo
 public class JsonReader {
 
     private String source;

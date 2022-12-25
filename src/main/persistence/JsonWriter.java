@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes the JSON representation of a lab inventory data to file
-// Reference: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// Reference: https://github.students.cs.ubc.ca/CPSC/JsonSerializationDemo
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
